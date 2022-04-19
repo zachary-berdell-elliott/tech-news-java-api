@@ -6,13 +6,14 @@ import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "post")
 
-public class Post {
+public class Post implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -32,6 +33,14 @@ public class Post {
     @Column(name = "updated_at")
     private Date updatedAt = new Date();
     private List<Comment> comments;
+
+    public Post(Integer id, String title, String postUrl, int voteCount, Integer userId) {
+        this.id = id;
+        this.title = title;
+        this.postUrl = postUrl;
+        this.voteCount = voteCount;
+        this.userId = userId;
+    }
 
     public Integer getId() {
         return id;

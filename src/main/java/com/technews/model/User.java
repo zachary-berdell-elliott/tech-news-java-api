@@ -25,6 +25,13 @@ public class User implements Serializable {
     private List<Vote> votes;
     private List<Comment> comments;
 
+    public User(Integer id, String username, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Post> posts;
     // Need to use FetchType.LAZY to resolve multiple bags exception
