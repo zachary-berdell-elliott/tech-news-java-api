@@ -17,8 +17,17 @@ public class Vote implements Serializable {
     private Integer userId;
     private Integer postId;
 
+    public Vote(){
+
+    }
+
     public Vote(Integer id, Integer userId, Integer postId) {
         this.id = id;
+        this.userId = userId;
+        this.postId = postId;
+    }
+
+    public Vote(Integer userId, Integer postId){
         this.userId = userId;
         this.postId = postId;
     }

@@ -37,7 +37,7 @@ public class PostController {
 
     @GetMapping("/api/posts/{id}")
     public Post getPost(@PathVariable Integer id) {
-        Post returnPost = repository.getOne(id);
+        Post returnPost = repository.getById(id);
         returnPost.setVoteCount(VoteRepository.countVotesByPostId(returnPost.getId()));
 
         return returnPost;
@@ -53,7 +53,7 @@ public class PostController {
 
     @PutMapping("/api/posts/{id}")
     public Post updatePost(@PathVariable int id, @RequestBody Post post) {
-        Post tempPost = repository.getOne(id);
+        Post tempPost = repository.getById(id);
         tempPost.setTitle(post.getTitle());
 
         return repository.save(tempPost);
@@ -70,7 +70,7 @@ public class PostController {
             vote.setUserId(sessionUser.getId());
             VoteRepository.save(vote);
 
-            returnPost = repository.getOne(vote.getPostId());
+            returnPost = repository.getById(vote.getPostId());
             returnPost.setVoteCount(VoteRepository.countVotesByPostId(vote.getPostId()));
 
             returnValue = "";

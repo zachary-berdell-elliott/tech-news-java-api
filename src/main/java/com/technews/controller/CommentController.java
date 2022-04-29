@@ -21,7 +21,7 @@ public class CommentController {
 
     @GetMapping("/api/comments/{id}")
     public Comment getComment(@PathVariable int id) {
-        return repository.getOne(id);
+        return repository.getById(id);
     }
 
     @PostMapping("/api/comments")
